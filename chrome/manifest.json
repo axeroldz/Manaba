@@ -2,5 +2,8 @@
     "name":"Ryu-manaba-improvement",
     "version":"0.0.1",
     "description":"",
-    "manifest_version":2
+    "manifest_version":2,
+    "pageaction":{
+        "default_popup":"popup/popup.html"
+    }
 }
