@@ -1,15 +1,29 @@
 {
-    "name":"Ryu-manaba-improvement",
-    "version":"0.0.1",
-    "description":"説明",
-    "manifest_version":3,
-    "action":{
-        "default_popup":"popup/popup.html"
+    "name": "Manaba Test",
+    "version": "0.1.0",
+    "permissions": ["storage"],
+    "host_permissions": ["https://manaba.ryukoku.ac.jp/ct/*"],
+    "content_scripts": [
+      {
+        "matches": ["https://manaba.ryukoku.ac.jp/ct/*"],
+        "js": ["/js/content.js"]
+      },
+      {
+        "matches": [
+          "https://manaba.ryukoku.ac.jp/ct/home_course",
+          "https://manaba.ryukoku.ac.jp/ct/home"
+        ],
+        "run_at": "document_idle",
+        "js": ["/js/Sort.js"]
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
     },
-    "content_scripts":[
-        {
-            "matches":["https://manaba.ryukoku.ac.jp/*"],
-            "js":["js/waki.js"]
-        }
-    ]
-}
+    "action": {
+      "default_title": "My Manaba",
+      "default_popup": "/popup/popup.html"
+    },
+    "manifest_version": 3
+  }
+  
