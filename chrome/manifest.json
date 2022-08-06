@@ -1,7 +1,7 @@
 {
     "name": "Manaba Test",
     "version": "0.1.0",
-    "permissions": ["storage"],
+    "permissions": ["storage","tabs"],
     "host_permissions": ["https://manaba.ryukoku.ac.jp/ct/*"],
     "content_scripts": [
       {
@@ -18,7 +18,7 @@
       }
     ],
     "background": {
-      "service_worker": "background.js"
+      "service_worker": "/js/background.js"
     },
     "action": {
       "default_title": "My Manaba",

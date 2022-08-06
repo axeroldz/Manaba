@@ -1,15 +1,19 @@
-
+const delay = ms => new Promise(res => setTimeout(res, ms));
 const addNewReport = (reports, report) => {
-  const reportTitleElement = document.createElement("div");
   const newReportElement = document.createElement("div");
+  const reportNameElement = document.createElement("a");
+  const reportDateElement = document.createElement("a");
 
-  reportTitleElement.textContent = report.course+"  "+ report.date +"  "+ report.time;
-  reportTitleElement.className = "report-title";
+  reportNameElement.textContent = report.course;
+  reportNameElement.href = report.link;
+  reportNameElement.className = "link";
 
-  newReportElement.id = "report-" + report.reportName;
+  reportDateElement.textContent = report.date +"  "+ report.time;
+  
   newReportElement.className = "report";
 
-  newReportElement.appendChild(reportTitleElement);
+  newReportElement.appendChild(reportNameElement);
+  newReportElement.appendChild(reportDateElement);
   reports.appendChild(newReportElement);
 };
 
@@ -35,9 +39,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     const currentReports = currentReportObj[0];
     //console.log(currentReports); give array of reports
     viewReport(currentReports);
+    
   });
 });
 
+const clickHandler =async () =>{
+  await delay(100);
+  const l = document.getElementsByClassName('link');
+  for (let i of l) {
+    i.onclick = () => {
+      chrome.tabs.create({active: true, url: i.href});
+    };
+  };
+}
 
 const calculateDate =  () => {
   var date1 = new Date("06/30/2019");
