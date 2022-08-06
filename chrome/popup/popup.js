@@ -8,8 +8,9 @@ const addNewReport = (reports, report) => {
   reportNameElement.href = report.link;
   reportNameElement.className = "link";
 
-  reportDateElement.textContent = report.date +"  "+ report.time;
-  
+  //reportDateElement.textContent = report.date +"  "+ report.time;
+  const dateDiff = calculateDate(report.date,report.time);
+  reportDateElement.textContent =  dateDiff[0]?(dateDiff[0]+"日後") : (dateDiff[1]+ "時間後");
   newReportElement.className = "report";
 
   newReportElement.appendChild(reportNameElement);
@@ -53,19 +54,23 @@ const clickHandler =async () =>{
   };
 }
 
-const calculateDate =  () => {
-  var date1 = new Date("06/30/2019");
-var date2 = new Date("07/30/2019");
-  
-// To calculate the time difference of two dates
-var Difference_In_Time = date2.getTime() - date1.getTime();
-  
-// To calculate the no. of days between two dates
-var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-  
-//To display the final no. of days (result)
-document.write("Total number of days between dates  <br>"
-               + date1 + "<br> and <br>" 
-               + date2 + " is: <br> " 
-               + Difference_In_Days);
+const calculateDate =  (date,time) => {
+  let dateNTime = [];
+  const currentDate = new Date();
+  const reportDateStr = date.split("/");
+  const y = Number(reportDateStr[0]);
+  const m = Number(reportDateStr[1] -1);
+  const d = Number(reportDateStr[2]);
+  const reportTimeStr = time.split(":");
+  const h = Number(reportTimeStr[0]);
+  const min = Number(reportTimeStr[1]);
+  const reportDate = new Date(y,m,d,h,min);
+  // To calculate the time difference of two dates in ms
+  const Difference_In_Time = reportDate.getTime() - currentDate.getTime();
+    
+  // To calculate the no. of days between two dates
+  const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+  dateNTime.push(Math.floor(Difference_In_Days),Math.floor(Difference_In_Days*24));
+  //To display the final no. of days (result)
+  return dateNTime;
 };
