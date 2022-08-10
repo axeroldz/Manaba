@@ -47,29 +47,31 @@
 
     //readKamoku();
     let currentReports = [];
-
+    const table = document.getElementsByClassName("groupthreadlist")[0];
     const addReport = async () => {
-        const tableRow = document.getElementsByClassName("groupthreadlist")[0].getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-        const reports = [];
-        if(tableRow[0]){
-            for(let i = 0;i<tableRow.length;i++){
-                const row = tableRow[i];
-                const reportLink = row.getElementsByTagName("th")[0].getElementsByTagName("a")[0].href;
-                if(reportLink.includes("report")){
-                    const reportName = row.getElementsByTagName("td")[1].getElementsByTagName("div")[0].title.split(" ")[0]
-                    let reportDate = row.getElementsByTagName("td")[0].title.split(" ")[0];
-                    reportDate = reportDate.replaceAll('-','/');
-                    const reportTime = row.getElementsByTagName("td")[0].title.split(" ")[1];
-                    reports.push({
-                        course: reportName,
-                        date : reportDate,
-                        time :reportTime,
-                        link : reportLink
-                        });
-                    //console.log(reportName + " +  " +reportDate+" + "+reportTime) // '2022-07-15 23:55' string
+        if(table){
+            const tableRow = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+            const reports = [];
+            if(tableRow[0]){
+                for(let i = 0;i<tableRow.length;i++){
+                    const row = tableRow[i];
+                    const reportLink = row.getElementsByTagName("th")[0].getElementsByTagName("a")[0].href;
+                    if(reportLink.includes("report")){
+                        const reportName = row.getElementsByTagName("td")[1].getElementsByTagName("div")[0].title.split(" ")[0]
+                        let reportDate = row.getElementsByTagName("td")[0].title.split(" ")[0];
+                        reportDate = reportDate.replaceAll('-','/');
+                        const reportTime = row.getElementsByTagName("td")[0].title.split(" ")[1];
+                        reports.push({
+                            course: reportName,
+                            date : reportDate,
+                            time :reportTime,
+                            link : reportLink
+                            });
+                        //console.log(reportName + " +  " +reportDate+" + "+reportTime) // '2022-07-15 23:55' string
+                    }
                 }
+            chrome.storage.sync.set({ ["reportData"]: JSON.stringify([reports]) });
             }
-           chrome.storage.sync.set({ ["reportData"]: JSON.stringify([reports]) });
         }
     }
 
