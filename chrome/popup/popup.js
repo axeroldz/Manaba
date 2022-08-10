@@ -8,15 +8,17 @@ const addNewReport = (reports, report) => {
   reportNameElement.href = report.link;
   reportNameElement.className = "link";
 
-  //reportDateElement.textContent = report.date +"  "+ report.time;
-  const dateDiff = calculateDate(report.date,report.time);
-  reportDateElement.textContent =  dateDiff[0]?(dateDiff[0]+"日後") : (dateDiff[1]+ "時間後");
+  let hourDiff = calculateHours(report.date,report.time);
+  reportDateElement.textContent =  (hourDiff>24)?(Math.floor(hourDiff/24)+" 日後") : (hourDiff+ " 時間後");
+  reportDateElement.className =  (hourDiff<48)? "timeLeft danger" : "timeLeft safe";
+  
   newReportElement.className = "report";
 
   newReportElement.appendChild(reportNameElement);
   newReportElement.appendChild(reportDateElement);
   reports.appendChild(newReportElement);
 };
+
 
 const viewReport = (currentReports=[]) => {
   const reportsElement = document.getElementById("reports"); 
@@ -36,11 +38,12 @@ const viewReport = (currentReports=[]) => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   chrome.storage.sync.get(["reportData"], (data) => {
+
     const currentReportObj = data["reportData"] ? JSON.parse(data["reportData"]) : [];
     const currentReports = currentReportObj[0];
-    //console.log(currentReports); give array of reports
+
     viewReport(currentReports);
-    
+    clickHandler();
   });
 });
 
@@ -54,8 +57,7 @@ const clickHandler =async () =>{
   };
 }
 
-const calculateDate =  (date,time) => {
-  let dateNTime = [];
+const calculateHours =  (date,time) => {
   const currentDate = new Date();
   const reportDateStr = date.split("/");
   const y = Number(reportDateStr[0]);
@@ -66,11 +68,11 @@ const calculateDate =  (date,time) => {
   const min = Number(reportTimeStr[1]);
   const reportDate = new Date(y,m,d,h,min);
   // To calculate the time difference of two dates in ms
-  const Difference_In_Time = reportDate.getTime() - currentDate.getTime();
+  const diffTime = reportDate.getTime() - currentDate.getTime();
     
   // To calculate the no. of days between two dates
-  const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-  dateNTime.push(Math.floor(Difference_In_Days),Math.floor(Difference_In_Days*24));
+  const diffHours = diffTime / (1000 * 3600);
+ 
   //To display the final no. of days (result)
-  return dateNTime;
+  return Math.floor(diffHours);
 };
