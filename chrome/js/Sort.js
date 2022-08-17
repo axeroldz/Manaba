@@ -1511,11 +1511,7 @@ showSelect();
                         null == _ &&
                           ie("p", {
                             children: [
-                              "読み込み中です ",
-                              ie("span", {
-                                "aria-hidden": "false",
-                                children: "> 🐤",
-                              }),
+                              "読み込み中...",
                             ],
                           }),
                         null != _ &&
@@ -1524,20 +1520,7 @@ showSelect();
                             children: [
                               ie("p", {
                                 children: [
-                                  "未提出の課題はありません！",
-                                  ie("span", {
-                                    "aria-hidden": "false",
-                                    children: "> 🐤",
-                                  }),
-                                ],
-                              }),
-                              ie("p", {
-                                children: [
-                                  "良い一日を！",
-                                  ie("span", {
-                                    "aria-hidden": "false",
-                                    children: "> 🐑",
-                                  }),
+                                  "未提出の課題はありません",
                                 ],
                               }),
                             ],
