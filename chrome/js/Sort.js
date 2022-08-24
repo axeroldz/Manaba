@@ -5,11 +5,23 @@ function showSelect(){
   let addElement = document.createElement("select");
   addElement.innerHTML = "<option>1Q</option> <option>2Q</option> <option>3Q</option> <option>4Q</option>";
   addElement.style.marginRight = "0.3em";
-  //console.log(selectarea);
+  addElement.setAttribute("id", "Qselecter");
   //console.log(selectcourse[0]);
   selectarea.insertBefore(addElement, selectcourse[0]);
 }
 showSelect();
+let Qselecter = document.getElementById("Qselecter");
+Qselecter.addEventListener("change", function(){
+  console.log(Qselecter.value);
+  chrome.storage.sync.set({"Qselecter":Qselecter.value},function(){
+    console.log("Saved");
+  });
+  console.log(chrome.runtime.error);
+  chrome.storage.sync.get(["Qselecter"],function(items){
+    console.log(items.Qselecter);
+  });
+
+});
 (() => {
   var e = {
       484: function (e) {
