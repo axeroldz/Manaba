@@ -43,10 +43,7 @@
 
         }
     }
-
-
-    //readKamoku();
-    let currentReports = [];
+    //WreadKamoku();
     const table = document.getElementsByClassName("groupthreadlist")[0];
     const addReport = async () => {
         if(table){
@@ -55,9 +52,9 @@
             if(tableRow[0]){
                 for(let i = 0;i<tableRow.length;i++){
                     const row = tableRow[i];
-                    const reportLink = row.getElementsByTagName("th")[0].getElementsByTagName("a")[0].href;
-                    if(reportLink.includes("report")){
-                        const reportName = row.getElementsByTagName("td")[1].getElementsByTagName("div")[0].title.split(" ")[0]
+                    const reportName = row.getElementsByTagName("td")[1].getElementsByTagName("div")[0].title.split(" ")[0]
+                    if(!reportName.includes("e-Learning")){
+                        const reportLink = row.getElementsByTagName("th")[0].getElementsByTagName("a")[0].href;
                         let reportDate = row.getElementsByTagName("td")[0].title.split(" ")[0];
                         reportDate = reportDate.replaceAll('-','/');
                         const reportTime = row.getElementsByTagName("td")[0].title.split(" ")[1];
@@ -67,14 +64,11 @@
                             time :reportTime,
                             link : reportLink
                             });
-                        //console.log(reportName + " +  " +reportDate+" + "+reportTime) // '2022-07-15 23:55' string
                     }
                 }
             chrome.storage.sync.set({ ["reportData"]: JSON.stringify([reports]) });
             }
         }
     }
-
-    addReport();
-
+     addReport();
 })();

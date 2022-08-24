@@ -1,24 +1,38 @@
 const delay = ms => new Promise(res => setTimeout(res, ms));
+
 const addNewReport = (reports, report) => {
   const newReportElement = document.createElement("div");
-  const reportNameElement = document.createElement("a");
+  const reportLinkElement = document.createElement("a");
   const reportDateElement = document.createElement("a");
 
-  reportNameElement.textContent = report.course;
-  reportNameElement.href = report.link;
-  reportNameElement.className = "link";
+  reportLinkElement.textContent = report.course;
+  reportLinkElement.href = report.link;
+  reportLinkElement.className = "link";
 
   let hourDiff = calculateHours(report.date,report.time);
-  reportDateElement.textContent =  (hourDiff>24)?(Math.floor(hourDiff/24)+" 日後") : (hourDiff+ " 時間後");
-  reportDateElement.className =  (hourDiff<48)? "timeLeft danger" : "timeLeft safe";
-  
-  newReportElement.className = "report";
 
-  newReportElement.appendChild(reportNameElement);
+  if(hourDiff > 0){
+    reportDateElement.className = "timeLeft";
+    if(hourDiff > 24){ 
+      hourDiff = (Math.floor(hourDiff/24)); 
+      reportDateElement.textContent =  hourDiff+" 日後";
+      if(hourDiff <= 2)
+        newReportElement.className =  "report danger";
+      else if(hourDiff <= 6)
+        newReportElement.className =  "report safe";
+      else 
+        newReportElement.className =  "report";
+    }  
+    else{
+      reportDateElement.textContent = hourDiff+ " 時間後";
+      newReportElement.className =  "report danger";
+    }
+
+  newReportElement.appendChild(reportLinkElement);
   newReportElement.appendChild(reportDateElement);
   reports.appendChild(newReportElement);
+  }
 };
-
 
 const viewReport = (currentReports=[]) => {
   const reportsElement = document.getElementById("reports"); 
@@ -67,12 +81,10 @@ const calculateHours =  (date,time) => {
   const h = Number(reportTimeStr[0]);
   const min = Number(reportTimeStr[1]);
   const reportDate = new Date(y,m,d,h,min);
-  // To calculate the time difference of two dates in ms
+
   const diffTime = reportDate.getTime() - currentDate.getTime();
     
-  // To calculate the no. of days between two dates
   const diffHours = diffTime / (1000 * 3600);
  
-  //To display the final no. of days (result)
   return Math.floor(diffHours);
 };

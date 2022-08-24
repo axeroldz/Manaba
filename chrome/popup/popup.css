@@ -10,40 +10,73 @@
 }
 
 .reports {
-  margin: 5px 5px;
+  margin: 3px 5px;
   padding: 3px;
 }
 
 .report {
   display: flex;
   border-bottom-color: #00254d;
-  border-bottom-width: 1px;
+  border-bottom-width: 2px;
   border-bottom-style: solid;
   border-radius: 0.8rem;
   padding-left:10px;
-  padding-top: 15px;
+  padding-top: 12px;
 }
 .report a{
   display: inline-block;
-  margin-top: 8px;
-  margin-bottom: 5px;  
 }
 
 
 .timeLeft{
-  font-weight: bold;
+  font-weight: 700;
   text-align: right;
-  width:15%;
-  margin-right:5px;
-}
-.link{
-  text-align: left;
-  width:85%
+  width:25%;
+  margin-right:8px;
 }
 
+
 .safe{
-  background-color: rgb(113, 221, 63);
+  background-color: rgb(250, 237, 189); 
+  color: rgb(105, 123, 45);;
 }
 .danger{
-  background-color: rgb(240, 82, 15);
+  background-color: rgb(250, 196, 189); 
+  color: rgb(123, 67, 45);;
+}
+.box{
+  display: inline-block;
+  width: 107.188px;
+  height: 26.188px;
+  border: 1.5px solid green;
+  padding:  3px 3px 8px 3px;
+  margin: 2px 5px 2px 8.5px;
+  border-style: solid;
+  border-radius: 0.8rem;
+}
+.area{
+  padding:3px;
+  margin:3px;
+}
+
+img{
+  display: flex;
+  object-fit: cover;
+  width:auto;
+  height:30px; 
+  padding-left:  8px;
+}
+.portal{
+  height:34px; 
+  padding-left: 13px;
+}
+
+
+a.link{
+  text-align: left;
+  width:75%
+}
+hr{
+  height: 1px;
+  background-color:black;
 }

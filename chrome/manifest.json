@@ -15,6 +15,10 @@
         ],
         "run_at": "document_idle",
         "js": ["/js/Sort.js"]
+      },
+      {
+        "matches": ["https://manaba.ryukoku.ac.jp/ct/course*_report_*"],
+        "js": ["/js/drop.js"]
       }
     ],
     "background": {
