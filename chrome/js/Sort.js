@@ -1,5 +1,4 @@
 function showSelect(){
-  let body = document.querySelector("body");
   let selectarea = document.querySelector(".showmore");
   let selectcourse = document.getElementsByName("select");
   let addElement = document.createElement("select");
@@ -11,12 +10,32 @@ function showSelect(){
 }
 showSelect();
 let Qselecter = document.getElementById("Qselecter");
+function select_init(){
+  chrome.storage.sync.get(["Qselecter"],function(items){
+    switch (items.Qselecter) {
+      case "1Q":
+        Qselecter.options[0].selected = true;
+        break;
+      case "2Q":
+        Qselecter.options[1].selected = true;
+        break;
+      case "3Q":
+        Qselecter.options[2].selected = true;
+        break;
+      case "4Q":
+        Qselecter.options[3].selected = true;
+        break;
+      default:
+        Qselecter.options[0].selected = true;
+    }
+  });
+}
+select_init();
 Qselecter.addEventListener("change", function(){
   console.log(Qselecter.value);
   chrome.storage.sync.set({"Qselecter":Qselecter.value},function(){
     console.log("Saved");
   });
-  console.log(chrome.runtime.error);
   chrome.storage.sync.get(["Qselecter"],function(items){
     console.log(items.Qselecter);
   });

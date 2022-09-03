@@ -43,7 +43,7 @@
 
         }
     }
-    //WreadKamoku();
+    //readKamoku();
     const table = document.getElementsByClassName("groupthreadlist")[0];
     const addReport = async () => {
         if(table){
