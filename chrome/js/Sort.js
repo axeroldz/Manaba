@@ -37,7 +37,7 @@ select_init();
 Qselecter.addEventListener("change", function(){
   console.log(Qselecter.value);
   chrome.storage.sync.set({"Qselecter":Qselecter.value},function(){
-    console.log("change detected. Saved:"+Qselecter.value);
+    console.log("change detected. Qselect saved:"+Qselecter.value);
   });
 });
 // kadai list
@@ -1655,13 +1655,20 @@ Qselecter.addEventListener("change", function(){
 })();
 // accordion UI
 const accMenu = document.querySelectorAll(".my-infolist");
-function accUI() {
-  let accContent = this.parentNode.childNodes;
-  console.log(accContent);
+const accNameList = ["課題", "お知らせ", "大学からの課題・アンケート", "コース一覧", "その他の曜日", "使わないコース  ※現在、担当教員もしくは管理者により「使わない」と設定されています。"];
+let accSaveList= [0,0,0,0,0,0];
+function accUI(elem) {
+  let accContent;
+  if(elem.nodeType == 1){
+    accContent = elem.childNodes;
+  }else{
+    accContent = this.parentNode.childNodes;
+  }
   let i = 2;
   if(accContent[1].nodeType == 3){
     i++;
   }
+  let accName = accContent[i-1].innerText;//
   let accDisplayFlag = 0;
   for(; i<accContent.length;i++){
     if(accContent[i].nodeType == 1){
@@ -1675,13 +1682,25 @@ function accUI() {
       }
     }
   }
+  let accSaveData = 9;
   if(accDisplayFlag == 1){
     accContent[0].innerHTML = "<p>▼</p>"
+    accSaveData = 1;
   }
   else{
     accContent[0].innerHTML = "<p>▲</p>"
+    accSaveData = 0;
   }
-  
+  let accpushtemp = "";
+  for(let j = 0;j<accNameList.length;j++){
+    if(accName == accNameList[j]){
+      accpushtemp = j;
+    }
+  }
+  accSaveList[accpushtemp] = accSaveData;
+  chrome.storage.sync.set({"accSaveData" : accSaveList},function(){
+    console.log("AccSaved:"+accSaveList);
+  });
 }
 let acctoggle = [];
 let acclength = 0;
@@ -1730,4 +1749,20 @@ if(accMenu.length >= 5){
   //text select restriction
   accMenu[4].childNodes[0].onselectstart = () => false;
 }
-
+const getStorage = (key = null) => new Promise(resolve => {
+  chrome.storage.sync.get(key, (data) => {resolve(data)});
+});
+function init_acc(){
+  for(let j = 0;j<accGetData.length;j++){
+    if(accGetData[j]){
+      accUI(accMenu[j]);
+    }
+  }
+}
+let accGetData;
+(async () => {
+  accGetData = await getStorage(["accSaveData"]);
+  console.log(accGetData);
+  accGetData = accGetData.accSaveData;
+  init_acc(); 
+})();
