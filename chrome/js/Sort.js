@@ -1,3 +1,4 @@
+// Create select botton (Qselecter)
 function showSelect(){
   let selectarea = document.querySelector(".showmore");
   let selectcourse = document.getElementsByName("select");
@@ -9,6 +10,7 @@ function showSelect(){
   selectarea.insertBefore(addElement, selectcourse[0]);
 }
 showSelect();
+// read & set select data
 let Qselecter = document.getElementById("Qselecter");
 function select_init(){
   chrome.storage.sync.get(["Qselecter"],function(items){
@@ -31,16 +33,14 @@ function select_init(){
   });
 }
 select_init();
+// save select data
 Qselecter.addEventListener("change", function(){
   console.log(Qselecter.value);
   chrome.storage.sync.set({"Qselecter":Qselecter.value},function(){
-    console.log("Saved");
+    console.log("change detected. Saved:"+Qselecter.value);
   });
-  chrome.storage.sync.get(["Qselecter"],function(items){
-    console.log(items.Qselecter);
-  });
-
 });
+// kadai list
 (() => {
   var e = {
       484: function (e) {
@@ -1653,3 +1653,33 @@ Qselecter.addEventListener("change", function(){
         );
     })();
 })();
+// accordion UI
+const accMenu = document.querySelectorAll(".my-infolist");
+function accUI() {
+  let accContent = this.parentNode.childNodes;
+  console.log(accContent);
+  let i = 1;
+  if(accContent[0].nodeType == 3){
+    i++;
+  }
+  for(; i<accContent.length;i++){
+    if(accContent[i].nodeType == 1){
+      if(accContent[i].style.display != "none"){
+        accContent[i].style.display = "none";
+      }
+      else{
+        accContent[i].style.display = "block";
+      }
+    }
+  }
+  
+}
+console.log(accMenu);
+accMenu[0].childNodes[0].addEventListener("click",accUI);
+accMenu[1].childNodes[1].addEventListener("click",accUI);
+accMenu[2].childNodes[1].addEventListener("click",accUI);
+accMenu[3].childNodes[1].addEventListener("click",accUI);
+if(accMenu.length >= 5){
+  accMenu[4].childNodes[1].addEventListener("click",accUI);
+}
+
