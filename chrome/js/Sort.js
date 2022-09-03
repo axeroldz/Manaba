@@ -1658,28 +1658,76 @@ const accMenu = document.querySelectorAll(".my-infolist");
 function accUI() {
   let accContent = this.parentNode.childNodes;
   console.log(accContent);
-  let i = 1;
-  if(accContent[0].nodeType == 3){
+  let i = 2;
+  if(accContent[1].nodeType == 3){
     i++;
   }
+  let accDisplayFlag = 0;
   for(; i<accContent.length;i++){
     if(accContent[i].nodeType == 1){
       if(accContent[i].style.display != "none"){
         accContent[i].style.display = "none";
+        accDisplayFlag = 1;
       }
       else{
         accContent[i].style.display = "block";
+        accDisplayFlag = 0;
       }
     }
   }
+  if(accDisplayFlag == 1){
+    accContent[0].innerHTML = "<p>▼</p>"
+  }
+  else{
+    accContent[0].innerHTML = "<p>▲</p>"
+  }
   
 }
-console.log(accMenu);
-accMenu[0].childNodes[0].addEventListener("click",accUI);
-accMenu[1].childNodes[1].addEventListener("click",accUI);
-accMenu[2].childNodes[1].addEventListener("click",accUI);
-accMenu[3].childNodes[1].addEventListener("click",accUI);
+let acctoggle = [];
+let acclength = 0;
 if(accMenu.length >= 5){
-  accMenu[4].childNodes[1].addEventListener("click",accUI);
+  acclength = 5;
+}
+else{
+  acclength = accMenu.length-1;
+}
+
+for(let i=0;i<acclength;i++){
+  acctoggle[i] = document.createElement("div");
+  acctoggle[i].innerHTML = "<p>▲</p>";
+  acctoggle[i].setAttribute("class", "accmenu_toggle");
+  acctoggle[i].style.position = "relative";
+  acctoggle[i].style.top = "27px";
+  acctoggle[i].style.left = "645px";
+  acctoggle[i].style.fontSize = "1.7em";
+  acctoggle[i].style.width = "1.8em";
+  acctoggle[i].style.zIndex = "2";
+  acctoggle[i].style.margin = "0.1px";
+  acctoggle[i].style.color = "#2e7c40";
+  accMenu[i].insertBefore(acctoggle[i],accMenu[i].childNodes[0]);
+  accMenu[i].style.marginTop = "-2em";
+}
+//header click event
+accMenu[0].childNodes[1].addEventListener("click",accUI);
+accMenu[1].childNodes[2].addEventListener("click",accUI);
+accMenu[2].childNodes[2].addEventListener("click",accUI);
+accMenu[3].childNodes[2].addEventListener("click",accUI);
+//triangle click event
+accMenu[0].childNodes[0].addEventListener("click",accUI);
+accMenu[1].childNodes[0].addEventListener("click",accUI);
+accMenu[2].childNodes[0].addEventListener("click",accUI);
+accMenu[3].childNodes[0].addEventListener("click",accUI);
+//text select restriction
+accMenu[0].childNodes[0].onselectstart = () => false;
+accMenu[1].childNodes[0].onselectstart = () => false;
+accMenu[2].childNodes[0].onselectstart = () => false;
+accMenu[3].childNodes[0].onselectstart = () => false;
+if(accMenu.length >= 5){
+  //header click event
+  accMenu[4].childNodes[2].addEventListener("click",accUI);
+  //triangle click event
+  accMenu[4].childNodes[0].addEventListener("click",accUI);
+  //text select restriction
+  accMenu[4].childNodes[0].onselectstart = () => false;
 }
 
