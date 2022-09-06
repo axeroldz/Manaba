@@ -49,19 +49,17 @@
 
 
     const addReport = async () => {
-        const table = document.getElementsByClassName("groupthreadlist")[0];
-        if(table){
-            const tableRow = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+        const tableRow = Array.from(document.querySelectorAll(".groupthreadlist > table > tbody > tr"));
             const reports = [];
             if(tableRow[0]){
                 for(let i = 0;i<tableRow.length;i++){
                     const row = tableRow[i];
-                    const reportName = row.getElementsByTagName("td")[1].getElementsByTagName("div")[0].title.split(" ")[0]
+                    const reportName = row.querySelector('td > .news-courseinfo' ).title.split(" ")[0];
                     if(!reportName.includes("自学自習")){
-                        const reportLink = row.getElementsByTagName("th")[0].getElementsByTagName("a")[0].href;
-                        let reportDate = row.getElementsByTagName("td")[0].title.split(" ")[0];
+                        const reportLink = row.querySelector("th >div > a").href;
+                        let reportDate = row.querySelector("td").title.split(" ")[0];
                         reportDate = reportDate.replaceAll('-','/');
-                        const reportTime = row.getElementsByTagName("td")[0].title.split(" ")[1];
+                        const reportTime = row.querySelector("td").title.split(" ")[1];
                         reports.push({
                             course: reportName,
                             date : reportDate,
@@ -72,7 +70,7 @@
                 }
             chrome.storage.sync.set({ ["reportData"]: JSON.stringify([reports]) });
             }
-        }
+        
     }
      addReport();
 })();
