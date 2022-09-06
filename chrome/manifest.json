@@ -11,7 +11,8 @@
       {
         "matches": [
           "https://manaba.ryukoku.ac.jp/ct/home_course",
-          "https://manaba.ryukoku.ac.jp/ct/home"
+          "https://manaba.ryukoku.ac.jp/ct/home",
+          "https://manaba.ryukoku.ac.jp/ct/home?chglistformat=timetable"
         ],
         "run_at": "document_idle",
         "js": ["/js/Sort.js"]
