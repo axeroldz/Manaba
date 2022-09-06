@@ -10,8 +10,8 @@
       },
       {
         "matches": [
-          "https://manaba.ryukoku.ac.jp/ct/home_course",
-          "https://manaba.ryukoku.ac.jp/ct/home",
+          "https://manaba.ryukoku.ac.jp/ct/home_course*",
+          "https://manaba.ryukoku.ac.jp/ct/home*",
           "https://manaba.ryukoku.ac.jp/ct/home?chglistformat=timetable"
         ],
         "run_at": "document_idle",
@@ -20,6 +20,15 @@
       {
         "matches": ["https://manaba.ryukoku.ac.jp/ct/course*_report_*"],
         "js": ["/js/drop.js"]
+      },
+      {
+        "matches":["https://manaba.ryukoku.ac.jp/ct/home",
+        "https://manaba.ryukoku.ac.jp/ct/home?*"],
+        "js":["/js/accUIhome.js"]
+      },
+      {
+        "matches":["https://manaba.ryukoku.ac.jp/ct/home_course*"],
+        "js":["/js/accUIcourse.js"]
       }
     ],
     "background": {
@@ -32,3 +41,4 @@
     "manifest_version": 3
   }
   
+
