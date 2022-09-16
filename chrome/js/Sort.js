@@ -1318,31 +1318,35 @@ Qselectshow();
         },
         ne = async (e) => {
           const t = await fetch(te[e]),
-            n = await t.text(),
-            r = new DOMParser().parseFromString(n, "text/html");
-          return Array.from(
-            r.querySelectorAll(".querylist > li > a, .reportlist > li > a")
-          ).map((e) => {
-            var t, n, r;
-            const i = e.getAttribute("href"),
-              o = null == i ? void 0 : i.replace(/_[a-z]+_[0-9]+/, "");
-            return {
+          n = await t.text(),
+          r = new DOMParser().parseFromString(n, "text/html");
+        const arr = Array.from(r.querySelectorAll(".querylist > li > a, .reportlist > li > a"));
+        const task = [];
+        for(let I = 0;I<arr.length;I++){
+          let g,h,k;
+          const i = arr[I].getAttribute("href"),
+            o = null == i ? void 0 : i.replace(/_[a-z]+_[0-9]+/, "");
+          if(arr[I].querySelector(".info1").innerText.replace(/\s+/g, " ").includes("自学自習")){
+            continue;
+          }
+            task.push({
               url: i && `https://manaba.ryukoku.ac.jp/ct/${i}`,
               courseUrl: o && `https://manaba.ryukoku.ac.jp/ct/${o}`,
               title:
-                null === (t = e.querySelector("h3")) || void 0 === t
+                null === (g = arr[I].querySelector("h3")) || void 0 === g
                   ? void 0
-                  : t.innerText.replace(/\s+/g, " "),
+                  : g.innerText.replace(/\s+/g, " "),
               course:
-                null === (n = e.querySelector(".info1")) || void 0 === n
+                null === (h = arr[I].querySelector(".info1")) || void 0 === h
                   ? void 0
-                  : n.innerText.replace(/\s+/g, " "),
+                  : h.innerText.replace(/\s+/g, " "),
               due:
-                null === (r = e.querySelector(".info2")) || void 0 === r
+                null === (k = arr[I].querySelector(".info2")) || void 0 === k
                   ? void 0
-                  : r.innerText.replace("受付終了日時：", ""),
-            };
-          });
+                  : k.innerText.replace("受付終了日時：", ""),
+              });
+          };
+          return task;
         };
       var re = 0;
       function ie(e, n, r, i, o) {

@@ -13,6 +13,7 @@ const addNewReport = (reports, report) => {
 
   if(hourDiff > 0){
     reportDateElement.className = "timeLeft";
+    reportDateElement.title = report.date + " " + report.time;
     if(hourDiff > 24){ 
       hourDiff = (Math.floor(hourDiff/24)); 
       reportDateElement.textContent =  hourDiff+" 日後";
