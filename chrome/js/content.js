@@ -3,16 +3,16 @@
     
     const courses = [];
     const fetchQuarter = async () =>{
-    const link = 'https://manaba.ryukoku.ac.jp/s/home_course?chglistformat=thumbnail';
-    const result = await fetch(link);
-    const htmlText = await result.text();
-    const domparser = new DOMParser();
-    const doc = domparser.parseFromString(htmlText, 'text/html');
-    Array.from(doc.querySelectorAll('.course-list > li > a > table > tbody > tr > td')).map((a) => {
-        let _a, _b;
-        courses[(_a = a.querySelector('h3')) === null || _a === void 0 ? void 0 : _a.innerText.replace(/\s+/g, ' ').split(" ")[1]]=(_b = a
-                .querySelector('.info1')) === null || _b === void 0 ? void 0 : _b.innerText.replace(/\s+/g, ' ').split(" ")[1]
-        });
+        const link = 'https://manaba.ryukoku.ac.jp/s/home_course?chglistformat=thumbnail';
+        const result = await fetch(link);
+        const htmlText = await result.text();
+        const domparser = new DOMParser();
+        const doc = domparser.parseFromString(htmlText, 'text/html');
+        Array.from(doc.querySelectorAll('.course-list > li > a > table > tbody > tr > td')).map((a) => {
+            let _a, _b;
+            courses[(_a = a.querySelector('h3')) === null || _a === void 0 ? void 0 : _a.innerText.replace(/\s+/g, ' ').split(" ")[1]]=(_b = a
+                    .querySelector('.info1')) === null || _b === void 0 ? void 0 : _b.innerText.replace(/\s+/g, ' ').split(" ")[1]
+            });
     };
     const insertClass = (courseName,quarter) =>{
         //親ノード(courseName)のクラス名にquarterを追加する
