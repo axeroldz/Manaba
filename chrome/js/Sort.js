@@ -1326,7 +1326,8 @@ Qselectshow();
           let g,h,k;
           const i = arr[I].getAttribute("href"),
             o = null == i ? void 0 : i.replace(/_[a-z]+_[0-9]+/, "");
-          if(arr[I].querySelector(".info1").innerText.replace(/\s+/g, " ").includes("自学自習")){
+          const xx = arr[I].querySelector(".info1").innerText.replace(/\s+/g, " ");
+          if(xx.includes("自学自習") || xx.includes("学生調査")){
             continue;
           }
             task.push({

@@ -49,24 +49,24 @@
 
 
     const addReport = async () => {
+        chrome.storage.sync.clear();
         const tableRow = Array.from(document.querySelectorAll(".groupthreadlist > table > tbody > tr"));
             const reports = [];
             if(tableRow[0]){
                 for(let i = 0;i<tableRow.length;i++){
                     const row = tableRow[i];
                     const reportName = row.querySelector('td > .news-courseinfo' ).title.split(" ")[0];
-                    if(!reportName.includes("自学自習")){
-                        const reportLink = row.querySelector("th >div > a").href;
-                        let reportDate = row.querySelector("td").title.split(" ")[0];
-                        reportDate = reportDate.replaceAll('-','/');
-                        const reportTime = row.querySelector("td").title.split(" ")[1];
-                        reports.push({
-                            course: reportName,
-                            date : reportDate,
-                            time :reportTime,
-                            link : reportLink
-                            });
-                    }
+                    const reportLink = row.querySelector("th >div > a").href;
+                    let reportDate = row.querySelector("td").title.split(" ")[0];
+                    reportDate = reportDate.replaceAll('-','/');
+                    const reportTime = row.querySelector("td").title.split(" ")[1];
+                    reports.push({
+                        course: reportName,
+                        date : reportDate,
+                        time :reportTime,
+                        link : reportLink
+                        });
+                    
                 }
             chrome.storage.sync.set({ ["reportData"]: JSON.stringify([reports]) });
             }

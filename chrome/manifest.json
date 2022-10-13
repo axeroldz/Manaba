@@ -5,17 +5,13 @@
     "host_permissions": ["https://manaba.ryukoku.ac.jp/ct/*"],
     "content_scripts": [
       {
-        "matches": ["https://manaba.ryukoku.ac.jp/ct/*"],
-        "js": ["/js/content.js"]
-      },
-      {
         "matches": [
           "https://manaba.ryukoku.ac.jp/ct/home_course*",
           "https://manaba.ryukoku.ac.jp/ct/home*",
-          "https://manaba.ryukoku.ac.jp/ct/home?chglistformat=timetable"
+          "https://manaba.ryukoku.ac.jp/ct/home?chglistformat=*"
         ],
         "run_at": "document_idle",
-        "js": ["/js/Sort.js"]
+        "js": ["/js/Sort.js","/js/content.js"]
       },
       {
         "matches": ["https://manaba.ryukoku.ac.jp/ct/course*_report_*"],
