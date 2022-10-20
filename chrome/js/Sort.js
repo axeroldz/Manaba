@@ -8,9 +8,10 @@ function showSelect(){
   addElement.setAttribute("id", "Qselecter");
   //console.log(selectcourse[0]);
   selectarea.insertBefore(addElement, selectcourse[0]);
-  console.log(document.getElementsByName("select")[0]);
 }
-showSelect();
+if(document.getElementsByName("select")[0].value == "home_?chglistformat=timetable"){
+  showSelect();
+}
 // read & set select data
 let Qselecter = document.getElementById("Qselecter");
 function select_init(){
