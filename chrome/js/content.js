@@ -49,7 +49,7 @@
 
 
     const addReport = async () => {
-        chrome.storage.sync.clear();
+        //chrome.storage.sync.clear();
         const tableRow = Array.from(document.querySelectorAll(".groupthreadlist > table > tbody > tr"));
             const reports = [];
             if(tableRow[0]){
@@ -72,5 +72,20 @@
             }
         
     }
-     addReport();
+    addReport();
+    //Qshow added by waki
+    const Qshow = async () =>{
+        let selectQuarter = await document.getElementById("Qselecter").value;
+        console.log("move");
+        console.log(selectQuarter);
+        let cells =  Array.from(document.querySelectorAll('.course > .courselistweekly-c'));
+        cells.forEach( cell =>{
+            // cell は1科目の枠を示す。cell変数を使うといい。
+            if(cell.className.includes(selectQuarter) != 1){
+                console.log(cell);
+                cell.style.display = "none";
+            }
+        })
+    };
+    Qshow();
 })();
