@@ -28,6 +28,7 @@
 }
 
 
+
 .timeLeft{
   font-weight: 700;
   text-align: right;
@@ -79,4 +80,14 @@ a.link{
 hr{
   height: 1px;
   background-color:black;
+}
+.icon{
+  height: 15px;
+  width: auto;
+  padding :7px;
+  margin-left: 5px;
+}
+.printJob{
+  height: 0;
+  width:0;
 }

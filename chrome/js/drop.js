@@ -1,6 +1,7 @@
 (() => {
     const form = document.querySelector(".report-form").parentElement.parentElement;
     const input = document.querySelector("input[type=file]");
+    const notUploaded = document.querySelector('span.deadline');
     
     const submit = ()=>{
         const hidden = document.createElement("input");
@@ -10,11 +11,39 @@
         form.appendChild(hidden);
         form.submit();
     };
-    const insertDropMessage = () =>{
-        const message = document.createElement("div");
-        message.setAttribute("id", "drop-state");
-        message.innerHTML = "<p>またはここにファイルをドロップ</p>";
-        input.parentElement.parentElement.appendChild(message);
+
+    const image =  (place) =>{
+        const img = document.createElement("img");
+
+        img.src = "https://icon-library.com/images/drag-and-drop-icon/drag-and-drop-icon-8.jpg";
+        img.style.width = "auto";
+        img.style.height = "75px";
+        img.style.margin="auto";
+        place.appendChild(img)
+    }
+    
+    const insert = () =>{
+        const newFrame = document.createElement("div");
+        newFrame.style.color = "black";
+        newFrame.style.textAlign = "center";
+        newFrame.style.display = "border";
+        image(newFrame);
+        message(newFrame);
+        notUploaded.appendChild(newFrame);
+    }
+
+    const message = (place) =>{
+        const msg1 = document.createElement("div");
+        const msg2 = document.createElement("div");
+        
+        msg1.textContent = "ここにファイルをドロップ";
+        
+        msg2.textContent = "OR";
+        msg2.style.margin = "6px"
+        msg2.style.fontSize = "15px"
+
+        place.appendChild(msg1);
+        place.appendChild(msg2);
     }
 
     const addListener = () =>{
@@ -32,9 +61,20 @@
             submit();
         });
     };
+    const edit = () =>{
+        const form = document.querySelector("div.form  .report-formV2");
+        const button = document.querySelector(".queryv4");
+
+        button.title = "ここにドロップ"
+        form.style.textAlign = "center";
+
+    }
  
    if(input){
-    insertDropMessage();
+    edit();
+    if(notUploaded)
+        insert();
+    
     addListener();
    }
 })();

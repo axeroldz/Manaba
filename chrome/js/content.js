@@ -49,7 +49,7 @@
 
 
     const addReport = async () => {
-        //chrome.storage.sync.clear();
+        chrome.storage.sync.remove(["reportData"]);
         const tableRow = Array.from(document.querySelectorAll(".groupthreadlist > table > tbody > tr"));
             const reports = [];
             if(tableRow[0]){
