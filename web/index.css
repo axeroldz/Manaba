@@ -39,6 +39,35 @@ p{
     background-color: rgba(256, 256, 256, 0.8);
     
 }
+.fontsmall{
+    font-size: 0.7em;
+}
+.slide{
+    background-color: #FFFBE8;
+    padding: 5%;
+}
+.slide_slick{
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+}
+.slides{
+    width: 100%;
+}
+.slick-prev:before{
+    color: black;
+}
+.slick-next:before{
+    color: black;
+}
+.slide_img{
+    width: 100%;
+}
+.bold{
+    font-weight: bold;
+}
+
+/* -- /waki -- */
 
 h1 {
     font-family: 'Lato', sans-serif;
