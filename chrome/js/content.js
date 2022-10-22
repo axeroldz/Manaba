@@ -75,14 +75,16 @@
     addReport();
     //Qshow added by waki
     const Qshow = async () =>{
+        if(!document.getElementById("Qselecter")){
+            return;
+        }
         let selectQuarter = await document.getElementById("Qselecter").value;
-        console.log("move");
-        console.log(selectQuarter);
         let cells =  Array.from(document.querySelectorAll('.course > .courselistweekly-c'));
         cells.forEach( cell =>{
             // cell は1科目の枠を示す。cell変数を使うといい。
+            cell.style.border = "none";
+            cell.style.paddingTop = "0px";
             if(cell.className.includes(selectQuarter) != 1){
-                console.log(cell);
                 cell.style.display = "none";
             }
         })

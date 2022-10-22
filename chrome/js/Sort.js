@@ -9,28 +9,38 @@ function showSelect(){
   //console.log(selectcourse[0]);
   selectarea.insertBefore(addElement, selectcourse[0]);
 }
-if(document.getElementsByName("select")[0].value == "home_?chglistformat=timetable"){
-  showSelect();
+if(document.getElementsByName("select").length != 0){
+  if(document.getElementsByName("select")[0].value.match("timetable")){
+    showSelect();
+  }
 }
 // read & set select data
-let Qselecter = document.getElementById("Qselecter");
+let Qselecter;
+if(document.getElementById("Qselecter")){
+  Qselecter = document.getElementById("Qselecter");
+}
+else{
+  Qselecter = 0;
+} 
 function select_init(){
   chrome.storage.sync.get(["Qselecter"],function(items){
-    switch (items.Qselecter) {
-      case "1Q":
-        Qselecter.options[0].selected = true;
-        break;
-      case "2Q":
-        Qselecter.options[1].selected = true;
-        break;
-      case "3Q":
-        Qselecter.options[2].selected = true;
-        break;
-      case "4Q":
-        Qselecter.options[3].selected = true;
-        break;
-      default:
-        Qselecter.options[0].selected = true;
+    if(Qselecter){
+      switch (items.Qselecter) {
+        case "1Q":
+          Qselecter.options[0].selected = true;
+          break;
+        case "2Q":
+          Qselecter.options[1].selected = true;
+          break;
+        case "3Q":
+          Qselecter.options[2].selected = true;
+          break;
+        case "4Q":
+          Qselecter.options[3].selected = true;
+          break;
+        default:
+          Qselecter.options[0].selected = true;
+      }
     }
   });
 }
@@ -38,27 +48,23 @@ select_init();
 //Qselect show: Qshow() in content.js ( onaji no )
 function Qshow2(selectQ) {
   let selectQuarter = selectQ;
-  console.log("move");
-  console.log(selectQuarter);
   let cells =  Array.from(document.querySelectorAll('.course > .courselistweekly-c'));
   cells.forEach( cell =>{
       // cell は1科目の枠を示す。cell変数を使うといい。
       cell.style.display = "block";
       if(cell.className.includes(selectQuarter) != 1){
-          console.log(cell);
           cell.style.display = "none";
       }
   })
 };
 // save select data
-Qselecter.addEventListener("change", function(){
-  console.log(Qselecter.value);
-  Qshow2(Qselecter.value);
-  chrome.storage.sync.set({"Qselecter":Qselecter.value},function(){
-    console.log("change detected. Qselect saved:"+Qselecter.value);
+if(Qselecter){
+  Qselecter.addEventListener("change", function(){
+    Qshow2(Qselecter.value);
+    chrome.storage.sync.set({"Qselecter":Qselecter.value},function(){
+    });
   });
-});
-
+}
 
 
 // kadai list

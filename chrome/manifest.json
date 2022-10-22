@@ -1,14 +1,24 @@
 {
-    "name": "Manaba Test",
+    "name": "Ex manaba",
     "version": "0.1.0",
+    "description": "Ex manaba は、LMSサービスのmanabaを使いやすくする拡張機能です。",
+    "icons": {
+        "16": "logo/icon16.png",
+        "48": "logo/icon48.png",
+        "128": "logo/icon.png"
+    },
     "permissions": ["storage","tabs"],
     "host_permissions": ["https://manaba.ryukoku.ac.jp/ct/*"],
     "content_scripts": [
       {
         "matches": [
-          "https://manaba.ryukoku.ac.jp/ct/home_course*",
-          "https://manaba.ryukoku.ac.jp/ct/home*",
-          "https://manaba.ryukoku.ac.jp/ct/home?chglistformat=*"
+          "https://manaba.ryukoku.ac.jp/ct/home_course",
+          "https://manaba.ryukoku.ac.jp/ct/home_course?*",
+          "https://manaba.ryukoku.ac.jp/ct/home_course_*",
+          "https://manaba.ryukoku.ac.jp/ct/home",
+          "https://manaba.ryukoku.ac.jp/ct/home__*",
+          "https://manaba.ryukoku.ac.jp/ct/home_?*",
+          "https://manaba.ryukoku.ac.jp/ct/home?*"
         ],
         "run_at": "document_idle",
         "js": ["/js/Sort.js","/js/content.js"]
@@ -18,12 +28,20 @@
         "js": ["/js/drop.js"]
       },
       {
-        "matches":["https://manaba.ryukoku.ac.jp/ct/home",
-        "https://manaba.ryukoku.ac.jp/ct/home?*"],
+        "matches":[
+          "https://manaba.ryukoku.ac.jp/ct/home",
+          "https://manaba.ryukoku.ac.jp/ct/home?*",
+          "https://manaba.ryukoku.ac.jp/ct/home_?*",
+          "https://manaba.ryukoku.ac.jp/ct/home__*"
+        ],
         "js":["/js/accUIhome.js"]
       },
       {
-        "matches":["https://manaba.ryukoku.ac.jp/ct/home_course*"],
+        "matches":[
+          "https://manaba.ryukoku.ac.jp/ct/home_course",
+          "https://manaba.ryukoku.ac.jp/ct/home_course?*",
+          "https://manaba.ryukoku.ac.jp/ct/home_course_*"
+        ],
         "js":["/js/accUIcourse.js"]
       }
     ],
