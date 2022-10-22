@@ -80,8 +80,7 @@ body{
     font-weight: bold;
 }
 .whats{
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin: 5%;
     border: 3px solid #44C4B7;
 }
 .sqimg>img{
@@ -104,7 +103,7 @@ body{
 }
 .credit{
     position: relative;
-    right:10em;
+    right:18em;
     margin-bottom: 0px;
 }
 .footer>p{
@@ -113,6 +112,12 @@ body{
 }
 .footer{
     background-color: gray;
+}
+.footer>p.right{
+    margin-bottom: 1em;
+}
+.footer>.center{
+    font-size: 0.8em;
 }
 
 /* -- /waki -- */
