@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <title>Ex Manaba</title>
     <meta name="”viewport”" content="width=device-width,initial-scale=1" />
-    <link href="index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link href="index.css" rel="stylesheet" type="text/css">
+
   </head>
 
   <body>
@@ -13,8 +16,8 @@
       <section>
         <div id="bg p1" class="header">
           <div id="transparent fr" class="on_header">
-            <h1>manabaをもっと使いやすく</h1>
-            <h3>manaba for Ryukoku</h3>
+            <h1>Ex manaba</h1>
+            <h3>manabaをもっと使いやすく</h3>
             <div id="downloads_box" class="center">
               <button class="download">ダウンロード</button>
             </div>
@@ -22,11 +25,13 @@
         </div>
       </section>
     </div>
-    <div>
+    <div class="slide">
       <section>
-        <h3>対応大学/龍谷大学</h3>
-        <div class="frame" id="fr2">
-          <!-- 画像、右左ボタン-->
+        <h3 class="bold">対応大学/龍谷大学</h3>
+        <div class="frame slide_slick" id="fr2">
+          <div class="slides"><img src="./img/kadai.jpg" class="slide_img"></div>
+          <div class="slides"><img src="./img/upload.jpg" class="slide_img"></div>
+          <div class="slides"><img src="./img/kadai.jpg" class="slide_img"></div>
         </div>
         <h2>全て無料で利用可能</h2>
       </section>
@@ -62,6 +67,15 @@
         <h1>ダウンロード方法</h1>
       </section>
     </div>
+    <div class="credit">
+      <h5>クレジット</h5>
+    </div>
+    <div class="footer">
+        <p>これは学生が作成した大学非公式のソフトウェアであり、龍谷大学および朝日ネットとは無関係です。<br>
+        私達はこのソフトウェアを利用したことによるいかなる損害、トラブルに対する責任を負いません。</p>
+    </div>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="./script/slide.js"></script>
   </body>
-  <footer></footer>
 </html>
