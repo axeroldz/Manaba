@@ -3,11 +3,17 @@ h2,
 h3,
 a,
 p{
-    text-align: center;
+    font-family: 'Lato', sans-serif;
 }
 /* waki */
+body{
+    margin: 0px;
+}
 .center{
     text-align: center;
+}
+.right{
+    text-align: right;
 }
 .download{
     border: 1.5px solid black;
@@ -45,6 +51,7 @@ p{
 .slide{
     background-color: #FFFBE8;
     padding: 5%;
+    margin-bottom: 10%;
 }
 .slide_slick{
     width: 95%;
@@ -72,6 +79,41 @@ p{
 .bold{
     font-weight: bold;
 }
+.whats{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 3px solid #44C4B7;
+}
+.sqimg>img{
+    width: 100%;
+    height: auto;
+}
+.sqimg{
+    border: 1px solid black;
+    width: 100%;
+}
+.ss{
+    width:25%;
+    min-width: 250px;
+    margin-left:2%;
+    margin-right: 2%;
+    margin-bottom: 5vh;
+}
+.btmr{
+    margin-bottom: 5%;
+}
+.credit{
+    position: relative;
+    right:10em;
+    margin-bottom: 0px;
+}
+.footer>p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.footer{
+    background-color: gray;
+}
 
 /* -- /waki -- */
 
@@ -87,6 +129,7 @@ h1 {
 h2{
     font-family: 'Lato', sans-serif;
 }
+/* /waki */
 
 h3 {
     font-family: 'Lato', sans-serif;
@@ -98,6 +141,10 @@ h3 {
 
 #fr3 {
     display: flex;
+    /* waki*/
+    justify-content: center;
+    flex-wrap: wrap;
+    /* /waki */
 }
 .waveheader{
     display: none;
