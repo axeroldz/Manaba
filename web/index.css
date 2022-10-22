@@ -1,0 +1,65 @@
+h1,
+h2,
+h3,
+a,
+p{
+    text-align: center;
+}
+/* waki */
+.center{
+    text-align: center;
+}
+.download{
+    border: 1.5px solid black;
+    background-color: rgba(256, 256, 256, 0.2);
+    font-size: 1.3em;
+    font-family: 'Lato', sans-serif;
+    padding:0.7em;
+    transition: .5s all;
+}
+.download:hover{
+    background-color: rgba(0, 0, 0, 0.4);
+    color:white;
+    border: 1.5px solid black;
+}
+.header{
+    padding-top: 4em;
+    padding-bottom: 4em;
+    background-image: url("./img/header.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10%;
+}
+.on_header{
+    width: 70%;
+    margin: 0 auto;
+    padding: 0.8em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    background-color: rgba(256, 256, 256, 0.8);
+    
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 5vmax;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+    width: 100%;
+    margin-top: 0;
+}
+
+#fr3 {
+    display: flex;
+}
+.waveheader{
+    display: none;
+}

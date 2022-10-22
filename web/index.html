@@ -1,103 +1,67 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>exm.waki.tech</title>
-        <meta name=”viewport” content="width=device-width,initial-scale=1">
-        <style>
-            @import url(//fonts.googleapis.com/css?family=Lato:300:400);
-            body {
-              margin:0;
-            }
-            h1 {
-              font-family: 'Lato', sans-serif;
-              font-weight:300;
-              letter-spacing: 2px;
-              font-size:5vmax;
-              width: 100%;
-              text-align: center;
-            }
-          p {
-            font-family: 'Lato', sans-serif;
-            letter-spacing: 1px;
-            font-size:14px;
-            color: #333333;
-          }
-          .header {
-            background: linear-gradient(60deg, rgba(238,130,124 ,1) 0%, rgba(162, 32, 65,1) 100%);
-            color:white;
-          }
-          .inner-header {
-            height:70vh;
-          }
-          .flex { /*Flexbox for containers*/
-            display: flex;
-            align-items: center;
-          }
-          .waves {
-            width: 100%;
-            height:30vh;
-            margin-bottom:-7px; /*Fix for safari gap*/
-            min-height:100px;
-            max-height:150px;
-          }
-          /* Animation */
-          .parallax > use {
-            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
-          }
-          .parallax > use:nth-child(1) {
-            animation-delay: -2s;
-            animation-duration: 10s;
-          }
-          .parallax > use:nth-child(2) {
-            animation-delay: -3s;
-            animation-duration: 15s;
-          }
-          .parallax > use:nth-child(3) {
-            animation-delay: -4s;
-            animation-duration: 20s;
-          }
-          .parallax > use:nth-child(4) {
-            animation-delay: -5s;
-            animation-duration: 25s;
-          }
-          @keyframes move-forever {
-            0% {
-              transform: translate3d(-90px,0,0);
-            }
-            100% { 
-              transform: translate3d(85px,0,0);
-            }
-          }
-        </style>
-    </head>
-    <body>
+<html lang="jp">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ex Manaba</title>
+    <meta name="”viewport”" content="width=device-width,initial-scale=1" />
+    <link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
 
-<div class="header">
-
-    <!--Content before waves-->
-    <div class="inner-header flex">
-    <h1>exm.waki.tech</h1>
+  <body>
+    <!-- david, 概要のサイト-->
+    <div class="">
+      <section>
+        <div id="bg p1" class="header">
+          <div id="transparent fr" class="on_header">
+            <h1>manabaをもっと使いやすく</h1>
+            <h3>manaba for Ryukoku</h3>
+            <div id="downloads_box" class="center">
+              <button class="download">ダウンロード</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    
-    <!--Waves Container-->
     <div>
-    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-    <defs>
-    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-    </defs>
-    <g class="parallax">
-    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-    <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-    </g>
-    </svg>
+      <section>
+        <h3>対応大学/龍谷大学</h3>
+        <div class="frame" id="fr2">
+          <!-- 画像、右左ボタン-->
+        </div>
+        <h2>全て無料で利用可能</h2>
+      </section>
     </div>
-    <!--Waves end-->
-    
+    <div>
+      <section>
+        <h1>どんなことが出来る？</h1>
+        <div class="frame" id="fr3">
+          <div class="ss">
+            <!--photo-->
+            <p class="characteristic">期限の色分け</p>
+            <p class="desc">
+              レポートを期限で色分けをし、出し忘れをわかりやすくする。
+            </p>
+          </div>
+          <div class="ss">
+            <!--photo-->
+            <p class="characteristic">提出しやすく</p>
+            <p class="desc">
+              提出物のファイルをドラッグアンドドロップでアップロードできる。
+            </p>
+          </div>
+          <div class="ss">
+            <!--photo-->
+            <p class="characteristic">通知を表示</p>
+            <p class="desc">Manabaを開いていなくても未提出課題の数が分かる。</p>
+          </div>
+        </div>
+      </section>
     </div>
-    <!--Header ends-->
-    </body>
+    <div>
+      <section>
+        <h1>ダウンロード方法</h1>
+      </section>
+    </div>
+  </body>
+  <footer></footer>
 </html>
