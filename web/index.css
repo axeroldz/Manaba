@@ -119,6 +119,16 @@ body{
 .footer>.center{
     font-size: 0.8em;
 }
+ol.margincenter{
+    list-style: none;
+    width: 50em;
+    margin-left: auto;
+    margin-right: auto;
+}
+button:hover{
+    cursor: pointer;
+}
+
 
 /* -- /waki -- */
 
