@@ -82,10 +82,15 @@
         let cells =  Array.from(document.querySelectorAll('.course > .courselistweekly-c'));
         cells.forEach( cell =>{
             // cell は1科目の枠を示す。cell変数を使うといい。
-            cell.style.border = "none";
+            cell.style.display = "block";
+            cell.style.borderTop = "none";
             cell.style.paddingTop = "0px";
-            if(cell.className.includes(selectQuarter) != 1){
-                cell.style.display = "none";
+            if(cell.className.includes("courselistweekly-border") && selectQuarter == "デフォルト"){
+              cell.style.borderTop = "1px dotted #8CC62B";
+              cell.style.paddingTop = "5px";
+            }
+            if(cell.className.includes(selectQuarter) != 1 && selectQuarter != "デフォルト"){
+                cell.style.display = "none";  
             }
         })
     };

@@ -3,7 +3,7 @@ function showSelect(){
   let selectarea = document.querySelector(".showmore");
   let selectcourse = document.getElementsByName("select");
   let addElement = document.createElement("select");
-  addElement.innerHTML = "<option>1Q</option> <option>2Q</option> <option>3Q</option> <option>4Q</option>";
+  addElement.innerHTML = "<option>デフォルト</option><option>1Q</option> <option>2Q</option> <option>3Q</option> <option>4Q</option>";
   addElement.style.marginRight = "0.3em";
   addElement.setAttribute("id", "Qselecter");
   //console.log(selectcourse[0]);
@@ -27,16 +27,19 @@ function select_init(){
     if(Qselecter){
       switch (items.Qselecter) {
         case "1Q":
-          Qselecter.options[0].selected = true;
-          break;
-        case "2Q":
           Qselecter.options[1].selected = true;
           break;
-        case "3Q":
+        case "2Q":
           Qselecter.options[2].selected = true;
           break;
-        case "4Q":
+        case "3Q":
           Qselecter.options[3].selected = true;
+          break;
+        case "4Q":
+          Qselecter.options[4].selected = true;
+          break;
+        case "デフォルト":
+          Qselecter.options[0].selected = true;
           break;
         default:
           Qselecter.options[0].selected = true;
@@ -52,8 +55,14 @@ function Qshow2(selectQ) {
   cells.forEach( cell =>{
       // cell は1科目の枠を示す。cell変数を使うといい。
       cell.style.display = "block";
-      if(cell.className.includes(selectQuarter) != 1){
-          cell.style.display = "none";
+      cell.style.borderTop = "none";
+      cell.style.paddingTop = "0px";
+      if(cell.className.includes("courselistweekly-border") && selectQuarter == "デフォルト"){
+        cell.style.borderTop = "1px dotted #8CC62B";
+        cell.style.paddingTop = "5px";
+      }
+      if(cell.className.includes(selectQuarter) != 1 && selectQuarter != "デフォルト"){
+          cell.style.display = "none";  
       }
   })
 };
