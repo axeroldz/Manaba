@@ -32,10 +32,15 @@ const checkReport = (currentReports=[]) => {
   if (currentReports.length > 0) {
     for (let i = 0; i < currentReports.length; i++) {
       const report = currentReports[i];
-      let hourDiff = calculateHours(report.date,report.time);
-      if(hourDiff > 0)
+      if(report.date == -1)
         validReport++;
+      else{
+        const hourDiff = calculateHours(report.date,report.time);
+        if(hourDiff > 0)
+          validReport++;
+      }
     }
+      
   }
   return validReport;
 };

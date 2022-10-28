@@ -9,30 +9,35 @@ const addNewReport = (reports, report) => {
   reportLinkElement.href = report.link;
   reportLinkElement.className = "link";
 
-  let hourDiff = calculateHours(report.date,report.time);
+  if(report.date != -1){
+      let hourDiff = calculateHours(report.date,report.time);
 
-  if(hourDiff > 0){
-    reportDateElement.className = "timeLeft";
-    reportDateElement.title = report.date + " " + report.time;
-    if(hourDiff > 24){ 
-      hourDiff = (Math.floor(hourDiff/24)); 
-      reportDateElement.textContent =  hourDiff+" 日後";
-      if(hourDiff <= 2)
-        newReportElement.className =  "report danger";
-      else if(hourDiff <= 6)
-        newReportElement.className =  "report safe";
-      else 
-        newReportElement.className =  "report";
-    }  
-    else{
-      reportDateElement.textContent = hourDiff+ " 時間後";
-      newReportElement.className =  "report danger";
+      if(hourDiff > 0){
+        reportDateElement.className = "timeLeft";
+        reportDateElement.title = report.date + " " + report.time;
+        if(hourDiff > 24){ 
+          hourDiff = (Math.floor(hourDiff/24)); 
+          reportDateElement.textContent =  hourDiff+" 日後";
+          if(hourDiff <= 2)
+            newReportElement.className =  "report danger";
+          else if(hourDiff <= 6)
+            newReportElement.className =  "report safe";
+          else 
+            newReportElement.className =  "report";
+        }  
+        else{
+          reportDateElement.textContent = hourDiff+ " 時間後";
+          newReportElement.className =  "report danger";
+        }
+      }
     }
-
+    else {
+      newReportElement.className =  "report";
+      reportDateElement.textContent = "";
+  }
   newReportElement.appendChild(reportLinkElement);
   newReportElement.appendChild(reportDateElement);
   reports.appendChild(newReportElement);
-  }
 };
 
 const viewReport = (currentReports=[]) => {

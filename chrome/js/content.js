@@ -57,9 +57,10 @@
                     const row = tableRow[i];
                     const reportName = row.querySelector('td > .news-courseinfo' ).title.split(" ")[0];
                     const reportLink = row.querySelector("th >div > a").href;
-                    let reportDate = row.querySelector("td").title.split(" ")[0];
-                    reportDate = reportDate.replaceAll('-','/');
-                    const reportTime = row.querySelector("td").title.split(" ")[1];
+                    let reportDate = row.querySelector("td").title.split(" ")[0] || -1;
+                    if(reportDate != -1)
+                        reportDate = reportDate.replaceAll('-','/');
+                    const reportTime = row.querySelector("td").title.split(" ")[1] || -1;
                     reports.push({
                         course: reportName,
                         date : reportDate,
